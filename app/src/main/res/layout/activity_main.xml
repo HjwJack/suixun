@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:text="gggg"
+        android:text="hhhh"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
