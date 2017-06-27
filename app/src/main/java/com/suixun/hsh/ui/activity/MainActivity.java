@@ -18,8 +18,9 @@ import android.widget.Toast;
 import com.suixun.hsh.R;
 import com.suixun.hsh.base.BaseActivity;
 import com.suixun.hsh.ui.fragment.NewsFragment;
-import com.suixun.hsh.ui.fragment.MessageFragment;
+import com.suixun.hsh.ui.fragment.ContentFragment;
 import com.suixun.hsh.ui.fragment.MyFragment;
+import com.suixun.hsh.ui.fragment.SmilingFragment;
 import com.suixun.hsh.ui.fragment.VideoFragment;
 
 import java.util.ArrayList;
@@ -86,15 +87,19 @@ public class MainActivity extends BaseActivity {
                         Toast.makeText(MainActivity.this, "Video", Toast.LENGTH_SHORT).show();
 
                         break;
-                    case R.id.nav_message:
+                    case R.id.nav_contentScripts:
                         fragment = fragmentList.get(2);
                         ft.replace(R.id.mFragment, fragment);
                         ft.commit();
                         Toast.makeText(MainActivity.this, "Message", Toast.LENGTH_SHORT).show();
-
+                        break;
+                    case R.id.nav_smilingFigure:
+                        fragment = fragmentList.get(3);
+                        ft.replace(R.id.mFragment, fragment);
+                        ft.commit();
                         break;
                     case R.id.nav_my:
-                        fragment = fragmentList.get(3);
+                        fragment = fragmentList.get(4);
                         ft.replace(R.id.mFragment, fragment);
                         ft.commit();
                         Toast.makeText(MainActivity.this, "My", Toast.LENGTH_SHORT).show();
@@ -129,7 +134,8 @@ public class MainActivity extends BaseActivity {
     private List<Fragment> getFraments() {
         fragmentList.add(NewsFragment.getInstance());
         fragmentList.add(VideoFragment.getInstance());
-        fragmentList.add(MessageFragment.getInstance());
+        fragmentList.add(ContentFragment.getInstance());
+        fragmentList.add(SmilingFragment.getInstance());
         fragmentList.add(MyFragment.getInstance());
 
         return fragmentList;
