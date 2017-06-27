@@ -1,4 +1,4 @@
-package com.suixun.hsh.ui.activity;
+package com.suixun.hsh.base;
 
 import android.graphics.Color;
 import android.os.Build;
@@ -10,8 +10,6 @@ import android.view.WindowManager;
 
 public class BaseActivity extends AppCompatActivity {
 
-    private boolean isStatusBarTranslate;
-    private boolean mIsFullScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

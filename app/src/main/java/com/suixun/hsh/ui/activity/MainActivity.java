@@ -1,9 +1,5 @@
 package com.suixun.hsh.ui.activity;
 
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -15,10 +11,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.suixun.hsh.R;
+import com.suixun.hsh.base.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
