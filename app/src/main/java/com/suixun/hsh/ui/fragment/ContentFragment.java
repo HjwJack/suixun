@@ -12,18 +12,18 @@ import com.suixun.hsh.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MessageFragment extends Fragment {
+public class ContentFragment extends Fragment {
 
 
-    public MessageFragment() {
+    public ContentFragment() {
         // Required empty public constructor
     }
 
-    private static MessageFragment messageFragment;
+    private static ContentFragment messageFragment;
 
-    public static MessageFragment getInstance(){
+    public static ContentFragment getInstance(){
         if (messageFragment==null){
-            messageFragment=new MessageFragment();
+            messageFragment=new ContentFragment();
         }
         return messageFragment;
     }
@@ -33,7 +33,7 @@ public class MessageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_message, container, false);
+        return inflater.inflate(R.layout.fragment_content, container, false);
     }
 
 }
