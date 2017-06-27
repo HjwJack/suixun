@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:theme="@style/SuixunTheme"
             android:name=".ui.activity.MainActivity"
             android:label="随讯">
             <intent-filter>

@@ -1,40 +1,52 @@
 package com.suixun.hsh.ui.activity;
 
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Color;
+import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.suixun.hsh.R;
 
-import java.util.ArrayList;
-import java.util.List;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
 
-    private Toolbar toolbar;
-    private DrawerLayout mDrawerLayout;
-    private NavigationView navView;
 
+    @BindView(R.id.mToolBar)
+    Toolbar mToolBar;
+    @BindView(R.id.nav_view)
+    NavigationView navView;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawerLayout;
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        toolbar = (Toolbar) findViewById(R.id.mToolBar);
-        setSupportActionBar(toolbar); //将Toolbar的实例传入
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navView = (NavigationView) findViewById(R.id.nav_view);
+
+        ButterKnife.bind(this);
+
+
+        setSupportActionBar(mToolBar); //将Toolbar的实例传入
         ActionBar actionBar = getSupportActionBar();
+
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true); //显示导航按钮
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);//设置导航按钮图标（默认返回箭头，含义返回上一个活动）
@@ -63,8 +75,15 @@ public class MainActivity extends BaseActivity {
                         break;
                     default:
                 }
-                mDrawerLayout.closeDrawers();
+                drawerLayout.closeDrawers();
                 return true;
+            }
+        });
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "FAB clicked", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -94,7 +113,7 @@ public class MainActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                mDrawerLayout.openDrawer(GravityCompat.START);//对HomeAsUp按钮（id永远是 android.R.id.home），显示滑动菜单，传入GravityCompat.START
+                drawerLayout.openDrawer(GravityCompat.START);//对HomeAsUp按钮（id永远是 android.R.id.home），显示滑动菜单，传入GravityCompat.START
                 break;
             case R.id.backup:
                 Toast.makeText(this, "You clicked Backup", Toast.LENGTH_SHORT).show();
@@ -110,4 +129,8 @@ public class MainActivity extends BaseActivity {
         }
         return true;
     }
+
+
+
+
 }
