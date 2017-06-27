@@ -19,6 +19,14 @@ public class MyFragment extends Fragment {
         // Required empty public constructor
     }
 
+    private static MyFragment myFragment;
+
+    public static MyFragment getInstance(){
+        if (myFragment==null){
+            myFragment=new MyFragment();
+        }
+        return myFragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

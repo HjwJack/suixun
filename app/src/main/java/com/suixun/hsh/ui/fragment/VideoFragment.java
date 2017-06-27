@@ -19,6 +19,15 @@ public class VideoFragment extends Fragment {
         // Required empty public constructor
     }
 
+    private static VideoFragment videoFragment;
+
+    public static VideoFragment getInstance() {
+        if (videoFragment == null) {
+            videoFragment = new VideoFragment();
+        }
+        return videoFragment;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

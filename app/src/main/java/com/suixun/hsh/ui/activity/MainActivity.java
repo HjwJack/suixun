@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -15,6 +17,13 @@ import android.widget.Toast;
 
 import com.suixun.hsh.R;
 import com.suixun.hsh.base.BaseActivity;
+import com.suixun.hsh.ui.fragment.NewsFragment;
+import com.suixun.hsh.ui.fragment.MessageFragment;
+import com.suixun.hsh.ui.fragment.MyFragment;
+import com.suixun.hsh.ui.fragment.VideoFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,6 +39,12 @@ public class MainActivity extends BaseActivity {
     DrawerLayout drawerLayout;
     @BindView(R.id.fab)
     FloatingActionButton fab;
+
+    private Fragment fragment;
+
+
+    private List<Fragment> fragmentList = new ArrayList<>();
+    private FragmentTransaction ft;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,30 +62,49 @@ public class MainActivity extends BaseActivity {
             actionBar.setDisplayHomeAsUpEnabled(true); //显示导航按钮
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);//设置导航按钮图标（默认返回箭头，含义返回上一个活动）
         }
+
+        fragmentList = getFraments();
+        normalFragment();
+
         navView.setCheckedItem(R.id.nav_home); //设置默认选中
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() { //菜单选项监听事件
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
+                ft = getSupportFragmentManager().beginTransaction();
                 //处理逻辑
                 switch (item.getItemId()) {
                     case R.id.nav_home:
+                        fragment = fragmentList.get(0);
+                        ft.replace(R.id.mFragment, fragment);
+                        ft.commit();
                         Toast.makeText(MainActivity.this, "Home", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.nav_video:
+                        fragment = fragmentList.get(1);
+                        ft.replace(R.id.mFragment, fragment);
+                        ft.commit();
                         Toast.makeText(MainActivity.this, "Video", Toast.LENGTH_SHORT).show();
 
                         break;
                     case R.id.nav_message:
+                        fragment = fragmentList.get(2);
+                        ft.replace(R.id.mFragment, fragment);
+                        ft.commit();
                         Toast.makeText(MainActivity.this, "Message", Toast.LENGTH_SHORT).show();
 
                         break;
                     case R.id.nav_my:
+                        fragment = fragmentList.get(3);
+                        ft.replace(R.id.mFragment, fragment);
+                        ft.commit();
                         Toast.makeText(MainActivity.this, "My", Toast.LENGTH_SHORT).show();
 
                         break;
                     default:
+                        break;
+
                 }
+
                 drawerLayout.closeDrawers();
                 return true;
             }
@@ -83,6 +117,22 @@ public class MainActivity extends BaseActivity {
             }
         });
 
+    }
+
+    private void normalFragment() {
+        ft = getSupportFragmentManager().beginTransaction();
+        fragment = fragmentList.get(0);
+        ft.replace(R.id.mFragment, fragment);
+        ft.commit();
+    }
+
+    private List<Fragment> getFraments() {
+        fragmentList.add(NewsFragment.getInstance());
+        fragmentList.add(VideoFragment.getInstance());
+        fragmentList.add(MessageFragment.getInstance());
+        fragmentList.add(MyFragment.getInstance());
+
+        return fragmentList;
     }
 
 
@@ -125,8 +175,6 @@ public class MainActivity extends BaseActivity {
         }
         return true;
     }
-
-
 
 
 }

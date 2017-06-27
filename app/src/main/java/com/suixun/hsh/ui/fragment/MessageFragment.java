@@ -19,6 +19,15 @@ public class MessageFragment extends Fragment {
         // Required empty public constructor
     }
 
+    private static MessageFragment messageFragment;
+
+    public static MessageFragment getInstance(){
+        if (messageFragment==null){
+            messageFragment=new MessageFragment();
+        }
+        return messageFragment;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -28,11 +28,10 @@
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
         </android.support.design.widget.AppBarLayout>
 
-        <fragment
+        <FrameLayout
             android:id="@+id/mFragment"
-            android:name="com.suixun.hsh.ui.fragment.HomeFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"></FrameLayout>
 
 
         <android.support.design.widget.FloatingActionButton
