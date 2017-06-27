@@ -13,7 +13,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.suixun.hsh.R;
 import com.suixun.hsh.base.BaseActivity;
@@ -67,42 +66,43 @@ public class MainActivity extends BaseActivity {
         fragmentList = getFraments();
         normalFragment();
 
-        navView.setCheckedItem(R.id.nav_home); //设置默认选中
+        navView.setCheckedItem(R.id.nav_news); //设置默认选中
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() { //菜单选项监听事件
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 ft = getSupportFragmentManager().beginTransaction();
                 //处理逻辑
                 switch (item.getItemId()) {
-                    case R.id.nav_home:
+                    case R.id.nav_news:
                         fragment = fragmentList.get(0);
                         ft.replace(R.id.mFragment, fragment);
                         ft.commit();
-                        Toast.makeText(MainActivity.this, "Home", Toast.LENGTH_SHORT).show();
+                        showLog("news");
                         break;
                     case R.id.nav_video:
                         fragment = fragmentList.get(1);
                         ft.replace(R.id.mFragment, fragment);
                         ft.commit();
-                        Toast.makeText(MainActivity.this, "Video", Toast.LENGTH_SHORT).show();
+                        showLog("video");
 
                         break;
                     case R.id.nav_contentScripts:
                         fragment = fragmentList.get(2);
                         ft.replace(R.id.mFragment, fragment);
                         ft.commit();
-                        Toast.makeText(MainActivity.this, "Message", Toast.LENGTH_SHORT).show();
+                        showLog("contentScripts");
                         break;
                     case R.id.nav_smilingFigure:
                         fragment = fragmentList.get(3);
                         ft.replace(R.id.mFragment, fragment);
                         ft.commit();
+                        showLog("smilingFigure");
                         break;
                     case R.id.nav_my:
                         fragment = fragmentList.get(4);
                         ft.replace(R.id.mFragment, fragment);
                         ft.commit();
-                        Toast.makeText(MainActivity.this, "My", Toast.LENGTH_SHORT).show();
+                        showLog("my");
 
                         break;
                     default:
@@ -118,7 +118,7 @@ public class MainActivity extends BaseActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "FAB clicked", Toast.LENGTH_SHORT).show();
+                showToast("FAB clicked");
             }
         });
 
@@ -168,13 +168,13 @@ public class MainActivity extends BaseActivity {
                 drawerLayout.openDrawer(GravityCompat.START);//对HomeAsUp按钮（id永远是 android.R.id.home），显示滑动菜单，传入GravityCompat.START
                 break;
             case R.id.backup:
-                Toast.makeText(this, "You clicked Backup", Toast.LENGTH_SHORT).show();
+                showToast("You clicked Backup");
                 break;
             case R.id.delete:
-                Toast.makeText(this, "You clicked Delete", Toast.LENGTH_SHORT).show();
+                showToast("You clicked Delete");
                 break;
             case R.id.settings:
-                Toast.makeText(this, "You clicked Settings", Toast.LENGTH_SHORT).show();
+                showToast("You clicked Settings");
                 break;
             default:
                 break;
