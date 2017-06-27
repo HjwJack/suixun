@@ -18,7 +18,7 @@ import com.suixun.hsh.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private Toolbar toolbar;
     private DrawerLayout mDrawerLayout;
