@@ -50,11 +50,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
         ButterKnife.bind(this);
-
-
         setSupportActionBar(mToolBar); //将Toolbar的实例传入
         ActionBar actionBar = getSupportActionBar();
 

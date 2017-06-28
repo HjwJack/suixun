@@ -2,12 +2,27 @@ package com.suixun.hsh.ui.fragment;
 
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.suixun.hsh.R;
+import com.suixun.hsh.base.Contents;
+import com.suixun.hsh.ui.fragment.ChildFragment.ChildNewsFragment;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -15,9 +30,14 @@ import com.suixun.hsh.R;
 public class NewsFragment extends Fragment {
 
 
-    public NewsFragment() {
-        // Required empty public constructor
-    }
+    @BindView(R.id.sliding_tabs)
+    TabLayout slidingTabs;
+    @BindView(R.id.viewpager)
+    ViewPager viewpager;
+    Unbinder unbinder;
+
+    private List<String> tabList = new ArrayList<>();
+    private List<ChildNewsFragment> childFragmentsList = new ArrayList<>();
 
     private static NewsFragment homeFragment;
 
@@ -34,7 +54,64 @@ public class NewsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_news, container, false);
+        unbinder = ButterKnife.bind(this, view);
+        initData();
         return view;
     }
 
+    private void initData() {
+        if (tabList.size() == 0 && childFragmentsList.size() == 0){
+            for (int i = 0; i < 6; i++) {
+                tabList.add(Contents.FLAGS[i]);
+                childFragmentsList.add(ChildNewsFragment.getInstance(Contents.FLAGS[i],Contents.FLAGURL[i]));
+            }
+        }
+        NewsViewPagerAdapter adapter = new NewsViewPagerAdapter(getChildFragmentManager());
+        viewpager.setAdapter(adapter);
+        slidingTabs.setupWithViewPager(viewpager);
+        slidingTabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewpager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    class NewsViewPagerAdapter extends FragmentPagerAdapter{
+
+        public NewsViewPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return childFragmentsList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return childFragmentsList.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return tabList.get(position);
+        }
+    }
 }
