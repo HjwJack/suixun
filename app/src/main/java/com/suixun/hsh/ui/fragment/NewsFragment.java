@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.suixun.hsh.R;
+import com.suixun.hsh.adapter.ViewPagerAdapter;
 import com.suixun.hsh.contants.CommonContants;
 import com.suixun.hsh.ui.fragment.ChildFragment.ChildNewsFragment;
 
@@ -36,7 +37,7 @@ public class NewsFragment extends Fragment {
     Unbinder unbinder;
 
     private List<String> tabList = new ArrayList<>();
-    private List<ChildNewsFragment> childFragmentsList = new ArrayList<>();
+    private List<Fragment> childFragmentsList = new ArrayList<>();
 
     private static NewsFragment homeFragment;
 
@@ -65,7 +66,7 @@ public class NewsFragment extends Fragment {
                 childFragmentsList.add(ChildNewsFragment.getInstance(CommonContants.NEWS_FLAGS[i], CommonContants.NEWS_FLAGURL[i]));
             }
         }
-        NewsViewPagerAdapter adapter = new NewsViewPagerAdapter(getChildFragmentManager());
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager(), tabList,childFragmentsList);
         viewpager.setAdapter(adapter);
         slidingTabs.setupWithViewPager(viewpager);
         slidingTabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -92,25 +93,5 @@ public class NewsFragment extends Fragment {
         unbinder.unbind();
     }
 
-    class NewsViewPagerAdapter extends FragmentPagerAdapter{
 
-        public NewsViewPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return childFragmentsList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return childFragmentsList.size();
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return tabList.get(position);
-        }
-    }
 }
