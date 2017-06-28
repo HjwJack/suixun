@@ -4,11 +4,6 @@
     android:layout_height="match_parent"
     tools:context="com.suixun.hsh.ui.fragment.VideoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Video" />
+    <include layout="@layout/include_tab_fragment"/>
 
 </FrameLayout>

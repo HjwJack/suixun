@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/SuiXun.iml" filepath="$PROJECT_DIR$/SuiXun.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/suixun.iml" filepath="$PROJECT_DIR$/suixun.iml" />
     </modules>
   </component>
 </project>

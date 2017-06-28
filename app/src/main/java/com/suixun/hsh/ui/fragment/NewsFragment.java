@@ -6,15 +6,13 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import com.suixun.hsh.R;
-import com.suixun.hsh.base.Contents;
+import com.suixun.hsh.contants.CommonContants;
 import com.suixun.hsh.ui.fragment.ChildFragment.ChildNewsFragment;
 
 import java.util.ArrayList;
@@ -34,6 +32,7 @@ public class NewsFragment extends Fragment {
     TabLayout slidingTabs;
     @BindView(R.id.viewpager)
     ViewPager viewpager;
+
     Unbinder unbinder;
 
     private List<String> tabList = new ArrayList<>();
@@ -62,8 +61,8 @@ public class NewsFragment extends Fragment {
     private void initData() {
         if (tabList.size() == 0 && childFragmentsList.size() == 0){
             for (int i = 0; i < 6; i++) {
-                tabList.add(Contents.FLAGS[i]);
-                childFragmentsList.add(ChildNewsFragment.getInstance(Contents.FLAGS[i],Contents.FLAGURL[i]));
+                tabList.add(CommonContants.NEWS_FLAGS[i]);
+                childFragmentsList.add(ChildNewsFragment.getInstance(CommonContants.NEWS_FLAGS[i], CommonContants.NEWS_FLAGURL[i]));
             }
         }
         NewsViewPagerAdapter adapter = new NewsViewPagerAdapter(getChildFragmentManager());
